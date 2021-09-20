@@ -1,0 +1,89 @@
+body {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(brown, green);
+}
+#alerts {
+  position: absolute;
+  left: 1%;
+  width: 320px;
+  font-size: 25px;
+  color: white;
+}
+#back-of-card {
+  position: absolute;
+  left: 32%;
+  bottom: 40.9%;
+  display: inline-block;
+  z-index: 10;
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 160px;
+  height: 240px;
+  display: none;
+}
+button {
+  height: 75px;
+  width: 75px;
+  border: 2px solid white;
+  border-radius: 20%;
+  font-size: 20px;
+  cursor: pointer;
+}
+#betting-function {
+  position: relative;
+  top: 1%;
+  left: 25%;
+}
+#bet {
+  position: absolute;
+}
+.chip {
+  position: relative;
+  left: 81px;
+  border-radius: 50%;
+  color: white;
+}
+#white-chip {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+}
+#red-chip {
+  background-color: red;
+}
+#green-chip {
+  background-color: green;
+}
+#blue-chip {
+  background-color: blue;
+}
+#black-chip {
+  background-color: black;
+}
+#deal {
+  position: absolute;
+  left: 479px;
+}
+#display-chips {
+  position: relative;
+  top: 10%;
+  left: 1%;
+  font-size: 30px;
+  color: white;
+}
+#game-functions {
+  position: relative;
+  left: 10%;
+  bottom: 40%;
+  width: 80px;
+}
+#stand, #hit, #split, #double-down {
+  margin: 5px;
+}
+#display-cards {
+  position: relative;
+  left: 20%;
+  bottom: 100%;
+}
