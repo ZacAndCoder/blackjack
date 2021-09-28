@@ -1,22 +1,25 @@
 body {
   position: relative;
+  border: 2px solid black;
   height: 100vh;
-  background-image: linear-gradient(brown, green);
+  background-color: #35654D;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-areas: 
+    "alerts betting betting"
+    "game cards chips"
+    "game cards chips";  
 }
 #alerts {
-  position: absolute;
-  left: 1%;
-  width: 320px;
-  font-size: 25px;
+  grid-area: alerts;
+  font-size: 1.56rem;
   color: white;
+  border: 1px solid black;
 }
 #back-of-card {
-  position: absolute;
-  left: 32%;
-  bottom: 45.9%;
-  display: inline-block;
   z-index: 10;
-  background-color: red;
+  background-color: #990000;
   border: 1px solid black;
   border-radius: 15px;
   width: 160px;
@@ -24,66 +27,56 @@ body {
   display: none;
 }
 button {
-  height: 75px;
-  width: 75px;
+  height: 4.68rem;
+  width: 4.68rem;
   border: 2px solid white;
   border-radius: 20%;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
+  background-color: brown;
 }
 #betting-function {
-  position: relative;
-  top: 1%;
-  left: 25%;
-}
-#bet {
-  position: absolute;
+  grid-area: betting;
+  border: 1px solid black;
+  z-index: 11;
 }
 .chip {
-  position: relative;
-  left: 81px;
   border-radius: 50%;
   color: white;
 }
 #white-chip {
   border: 2px solid black;
-  background-color: white;
+  background-color: #EEEEEE;
   color: black;
 }
 #red-chip {
-  background-color: red;
+  background-color: #DD0000;
 }
 #green-chip {
-  background-color: green;
+  background-color: #007700;
 }
 #blue-chip {
-  background-color: blue;
+  background-color: #0000DD;
 }
 #black-chip {
   background-color: black;
 }
-#deal {
-  position: absolute;
-  left: 479px;
-}
 #display-chips {
-  position: relative;
-  top: 10%;
-  left: 1%;
-  font-size: 30px;
+  grid-area: chips;
+  border: 1px solid black;
+  font-size: 1.875rem;
   color: white;
 }
-#game-functions {
-  position: relative;
-  left: 10%;
-  bottom: 40%;
-  width: 80px;
+#table-decor {
+  text-align: center;
+  border: 2px solid black;
+  font-size: 5rem;
 }
-#stand, #hit, #split, #double-down {
-  margin: 5px;
+#game-functions {
+  grid-area: game;
+  border: 1px solid black;
 }
 #display-cards {
-  position: relative;
-  left: 20%;
-  bottom: 93%;
+  grid-area: cards;
+  border: 1px solid black;
 }
