@@ -103,7 +103,7 @@ $("#bet").click(function() {
     $(".chip, #bet").prop("disabled", true);
     $("#deal").prop("disabled", false);
   } else {
-    $("#alerts").html("Make a bet to start the game.");
+    $("#alerts").html(" Make a bet to start the game.");
   }
 })
 
@@ -114,7 +114,6 @@ var dealerBlackjack = 0;
 var playerBlackjack = 0;
 var removedCards = [];
 $("#deal").click(function() {
-  //Maybe just make one function that resets all the variables, like startNewRound();//
   $("#player-cards, #dealer-cards, #split-hand-cards").empty();
   dealerCards = [];
   playerCards = [];
@@ -133,7 +132,7 @@ $("#deal").click(function() {
       DECK.push(removedCards[i]);
     }
     removedCards = [];
-    $("#alerts").html("Shuffled cards.");
+    $("#alerts").html(" Shuffled cards.");
   }
   for (let i = 0; i < 2; i++) {  
     let drawCard = DECK[Math.floor(Math.random() * DECK.length)];
@@ -169,13 +168,11 @@ $("#deal").click(function() {
 })
 
 //Stand//
-//just evaluate dealer's turn if player stands//
 $("#stand").click(function() {
   if (handIsSplit == true) {
     splitHandsEvaluated++;
     if (splitHandsEvaluated == 1) {
       evaluateHand();
-      //alert("Stand / evaluated first split hand");//
       $("#player-cards").empty();
       for (let i = 0; i < secondHand.length; i++) {
         let img = $("<img width=160px height=240px>");
@@ -207,7 +204,6 @@ $("#hit").click(function() {
   let img = $("<img width=160px height=240px>");
   img.attr("src", drawCard.link).appendTo("#player-cards");
   DECK.splice(DECK.indexOf(drawCard), 1);
-  //everything below here could be a separate function that is called multiple times//
   evaluateHand(); 
 })
 
@@ -219,12 +215,10 @@ var savePlayerChips = 0;
 var saveBetAmount = 0;
 $("#split").click(function() {
   handIsSplit = true;
-  //savePlayerChips = playerChips;//
   playerChips -= betAmount;
   saveBetAmount = betAmount;
   $("#bet-amount").html(betAmount);
   $("#player-chips").html(playerChips);
-  //$("#player-cards").children().css("margin", "50px");//
   $("#split, #double-down").prop("disabled", true);
   firstHand.push(playerCards[0]);
   secondHand.push(playerCards[1]);
@@ -232,8 +226,6 @@ $("#split").click(function() {
     let drawCard = DECK[Math.floor(Math.random() * DECK.length)];
     playerCards.push(drawCard);
     removedCards.push(drawCard);
-    /*let img = $("<img width=160px height=240px>");
-    img.attr("src", drawCard.link).appendTo("#player-cards");*/
     DECK.splice(DECK.indexOf(drawCard), 1);
   }
   firstHand.push(playerCards[2]);
@@ -269,7 +261,6 @@ $("#split").click(function() {
   } else {
     evaluateHand();
   }  
-  //$("#player-cards").empty();//
 })
 
 //Double down//
@@ -310,7 +301,6 @@ var evaluateHand = function() {
     if (handIsSplit == true) {
       splitHandsEvaluated++;
       if (splitHandsEvaluated == 1) {
-        //alert("Bust / evaluated first split hand");//
         $("#player-cards").empty();
         for (let i = 0; i < secondHand.length; i++) {
           let img = $("<img width=160px height=240px>");
@@ -323,21 +313,17 @@ var evaluateHand = function() {
         }
         saveFirstHandValue = playerHandValue;
         playerCards = secondHand;
-        //evaluateHand(); - you may need to evaluate hand to determine if hand is ALREADY at 21//
       } else if (splitHandsEvaluated == 2) {
         saveSecondHandValue = playerHandValue;
-        //alert("Bust / evaluated second split hand");//
         dealerTurn();
       }
     } else {
-      //alert("Bust!");//
       dealerTurn();
     }
   } else if (playerHandValue == 21) {
     if (handIsSplit == true) {
       splitHandsEvaluated++;
       if (splitHandsEvaluated == 1) {
-        //alert("21 / evaluated first split hand");//
         $("#player-cards").empty();
         for (let i = 0; i < secondHand.length; i++) {
           let img = $("<img width=160px height=240px>");
@@ -350,18 +336,13 @@ var evaluateHand = function() {
         }
         saveFirstHandValue = playerHandValue;
         playerCards = secondHand;
-        //evaluateHand();//
       } else if (splitHandsEvaluated == 2) {
         saveSecondHandValue = playerHandValue;
-        //alert("21 / evaluated second split hand");//
         dealerTurn();
       }
     } else {
-      //alert("21");//
       dealerTurn();
     }
-    //$("#hit").prop("disabled", true);//
-    //startNewRound();//
   } else if (playerHandValue < 21 && handIsSplit == true && splitHandsEvaluated == 1 && firstHand[0].card == "Ace" && secondHand[0].card == "Ace") {
     splitHandsEvaluated++;
     saveSecondHandValue = playerHandValue;
@@ -370,7 +351,6 @@ var evaluateHand = function() {
 }
 
 //Evaluate dealer's hand//
-//var dealerSoftAces = 0;//
 var saveFirstHandValue = 0;
 var dealerHandValue = 0;
 var evaluatedDealerHand = false;
@@ -411,43 +391,33 @@ var dealerTurn = function() {
   }
   if (playerBlackjack > 0) {
     if (dealerBlackjack > 0) {
-      //$("#alerts").html("<br>Tie: both players have blackjack.");//
-      $("#alerts").append("Tie: both players have blackjack.");
+      $("#alerts").append(" Tie: both players have blackjack.");
       playerChips += betAmount;
     } else {
-      //$("#alerts").html("<br>Blackjack!");//
-      $("#alerts").append("Blackjack!");
+      $("#alerts").append(" Blackjack!");
       playerChips += betAmount + (betAmount * 1.5);
     }
   } else if (playerHandValue <= 21) {
     if (dealerBlackjack > 0) {
-      //$("#alerts").html("<br>You lose: dealer has blackjack.");//
-      $("#alerts").append("You lose: dealer has blackjack.");
+      $("#alerts").append(" You lose: dealer has blackjack.");
     } else if (playerHandValue > dealerHandValue) {
-      //$("#alerts").html("<br>You win!");//
-      $("#alerts").append("You win!");
+      $("#alerts").append(" You win!");
       playerChips += betAmount * 2;
     } else if (playerHandValue == dealerHandValue) {
-      //$("#alerts").html("<br>Tie");//
-      $("#alerts").append("Tie");
+      $("#alerts").append(" Tie");
       playerChips += betAmount;
     } else if (playerHandValue < dealerHandValue && dealerHandValue > 21) {
-      //$("#alerts").html("<br>You win: dealer busted!");//
-      $("#alerts").append("You win: dealer busted!");
+      $("#alerts").append(" You win: dealer busted!");
       playerChips += betAmount * 2;
     } else {
-      //$("#alerts").html("<br>You lose.");//
-      $("#alerts").append("You lose.");
+      $("#alerts").append(" You lose.");
     }
   } else {
-    //$("#alerts").html("<br>You lose: bust!");//
-    $("#alerts").append("You lose: bust!");
+    $("#alerts").append(" You lose: bust!");
   }
-  //finish this//
   if (handIsSplit == true && splitHandsEvaluated == 2) {
     splitHandsEvaluated = 0;
     playerHandValue = saveFirstHandValue;
-    //playerChips = savePlayerChips;//
     betAmount = saveBetAmount;
     dealerTurn();
   } else {
