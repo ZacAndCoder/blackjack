@@ -1,89 +1,101 @@
 body {
   position: relative;
+  font-family: "Garamond", serif;
   height: 100vh;
-  background-image: linear-gradient(brown, green);
+  background-color: #35654D;
+  display: grid;
+  grid-template-columns: 1fr 5.2fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-areas: 
+    "betting betting betting"
+    "game cards chips"
+    "alerts alerts alerts";  
 }
 #alerts {
-  position: absolute;
-  left: 1%;
-  width: 320px;
-  font-size: 25px;
+  grid-area: alerts;
+  font-size: 1.875rem;
   color: white;
 }
 #back-of-card {
-  position: absolute;
-  left: 32%;
-  bottom: 45.9%;
-  display: inline-block;
   z-index: 10;
-  background-color: red;
+  background-image: radial-gradient(red, black);
   border: 1px solid black;
   border-radius: 15px;
   width: 160px;
   height: 240px;
   display: none;
+  position: relative;
+  bottom: 15.32rem;
+  left: 10rem;
+  margin-bottom: -15rem;
+}
+#dealer-label {
+	transform: rotate(-60deg) translate(-3rem, 1rem);
+  font-size: 3rem;
+  color: white;
 }
 button {
-  height: 75px;
-  width: 75px;
+  height: 4.68rem;
+  width: 4.68rem;
   border: 2px solid white;
   border-radius: 20%;
-  font-size: 20px;
+  font-family: "Garamond", serif;
+  font-weight: bold;
+  font-size: 1.5rem;
   cursor: pointer;
+  background-color: brown;
+  vertical-align: top;
 }
 #betting-function {
-  position: relative;
-  top: 1%;
-  left: 25%;
-}
-#bet {
-  position: absolute;
+  text-align: center;
+  grid-area: betting;
+  border: 1px solid black;
+  background-color: brown;
+  z-index: 11;
 }
 .chip {
-  position: relative;
-  left: 81px;
   border-radius: 50%;
   color: white;
 }
 #white-chip {
   border: 2px solid black;
-  background-color: white;
+  background-image: radial-gradient(white, #DDDDDD);
   color: black;
 }
 #red-chip {
-  background-color: red;
+  background-image: radial-gradient(#DD0000, black);
 }
 #green-chip {
-  background-color: green;
+  background-image: radial-gradient(#007700, black);
 }
 #blue-chip {
-  background-color: blue;
+  background-image: radial-gradient(#0000DD, black);
 }
 #black-chip {
-  background-color: black;
-}
-#deal {
-  position: absolute;
-  left: 479px;
+  background-image: radial-gradient(#222222, black);
 }
 #display-chips {
-  position: relative;
-  top: 10%;
-  left: 1%;
-  font-size: 30px;
+  grid-area: chips;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 1.875rem;
   color: white;
 }
-#game-functions {
-  position: relative;
-  left: 10%;
-  bottom: 40%;
-  width: 80px;
+#table-decor {
+  text-align: center;
+  border: 2px solid black;
+  font-family: "Times New Roman", serif;
+  font-size: 5rem;
 }
-#stand, #hit, #split, #double-down {
-  margin: 5px;
+#game-functions {
+  text-align: center;
+  grid-area: game;
+  border: 1px solid black;
+}
+#double-down {
+  font-size: 1.25rem;
 }
 #display-cards {
-  position: relative;
-  left: 20%;
-  bottom: 93%;
+  grid-area: cards;
+  border: 1px solid black;
 }
