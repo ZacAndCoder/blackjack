@@ -30,7 +30,7 @@ body {
   margin-bottom: -15rem;
 }
 #dealer-label {
-	transform: rotate(-60deg) translate(-3rem, 1rem);
+  transform: rotate(-60deg) translate(-3rem, 1rem);
   font-size: 3rem;
   color: white;
 }
