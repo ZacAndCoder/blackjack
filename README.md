@@ -1,15 +1,15 @@
 
 # Blackjack
 
-## Description
-
 To view this project, click [here](https://zacandcoder.github.io/blackjack/).
 
 To reference the rules of the game, click [here](https://bicyclecards.com/how-to-play/blackjack/).
 
-Using HTML, CSS, JavaScript, and jQuery, I created the card game "Blackjack" from scratch. Note that buttons are "grayed out" or disabled when they cannot legally be clicked. Because of this, even people who do not play Blackjack should be able to navigate the game; my program is essentially a Blackjack tutorial. 
+## Description
 
-To start the game, players must place a bet and click **deal cards**. Bets must be greater than zero and less than the amount of chips available, but beyond that, there are no bet limits. The dealer's cards are dealt at the top of the page, and one card is dealt face down. The player's cards are dealt below the **BLACKJACK** text box. On the right-hand side of the page, both the bet amount and the chip amount are displayed. On the left-hand side of the page, all possible moves are shown. 
+Using HTML, CSS, JavaScript, and jQuery, I programmed the card game "Blackjack." Note that buttons are "grayed out" or disabled when they cannot be legally clicked. Because of this, even people who do not play Blackjack should be able to understand the game; my program is essentially a Blackjack tutorial. 
+
+To start the game, players must place a bet and click **Deal Cards**. Bets must be greater than zero and less than the amount of chips available, but beyond that, there are no bet limits. The dealer's cards are dealt at the top of the page, and one card is dealt face down. The player's cards are dealt below the **BLACKJACK** text box. On the right-hand side of the page, both the bet amount and the chip amount are displayed. On the left-hand side of the page, all possible moves are shown. 
 
 Players can **stand** to keep their current cards and end the turn, **hit** for another card, **split** their hand if they have two initial cards of the same value, or **double down** to double their bet and receive just one more card. The latter two choices cannot be selected if the player's current bet amount is higher than their chip amount. If a hand is split, the topmost pair is the one currently in play. Once a player ends play for that pair, the second pair will be moved to the top. Remember that split Aces only receive one extra card per hand. 
 
@@ -79,17 +79,13 @@ $("#deal").click(function() {
 })
 ```
 
-This function is executed when the **deal cards** button is clicked. First, it clears out the cards on the table and resets all variables. Then, the **back-of-card** element is displayed in order to obscure the dealer's second card before their turn. If half of the deck has been dealt, the dealt cards—which have been saved in an array called **removedCards**—are added back to the **DECK** array. This is done by looping through **removedCards.length** and pushing each array item to the **DECK**. The **removedCards** array is emptied and the message "Shuffled cards" is shown at the bottom of the page.
+This function is executed when the **Deal Cards** button is clicked. First, it clears out the cards on the table and resets all variables. Then, the **back-of-card** element is displayed in order to obscure the dealer's second card before their turn. If half of the deck has been dealt, the dealt cards—which have been saved in an array called **removedCards**—are added back to the **DECK** array. This is done by looping through the length of **removedCards** and pushing each array item to the **DECK**. The **removedCards** array is emptied and the message "Shuffled cards" is shown at the bottom of the page.
 
 Next, a loop runs twice to draw two cards for the dealer. The variable **drawCard** is set as equal to a random array item from the **DECK** and then pushed to the **dealerCards** array as well as the **removedCards** array. The **img** variable is declared with the correct resolution, and it is given the source attribute **drawCard.link**, which contains the link to the drawn card's image. This allows the image to be shown at the top of the page. The selected card is removed from the **DECK**, and then a second loop repeats this process for the *player's* cards. 
 
-Additionally, certain buttons are disabled or enabled once cards have been dealt. Players cannot bet or deal cards a second time during their turn. **Hit** and **stand** buttons are automatically enabled because these options are always available to players if their hand is below 21. If players have at least as many chips as their current bet amount, the **double down** and **split** buttons are enabled, although a split additionally requires that both initial cards have the same value. 
+Additionally, certain buttons are disabled or enabled once cards have been dealt. Players cannot bet or deal cards a second time during their turn. **Hit** and **Stand** buttons are automatically enabled because these options are always available to players if their hand is below 21. If players have at least as many chips as their current bet amount, the **Double Down** and **Split** buttons are enabled, although a split additionally requires that both initial cards have the same value. 
 
 Finally, there are two "if statements" that identify blackjacks. If the dealer has a blackjack, the player still plays as usual because the dealer's blackjack is not yet apparent. However, if the player gets a blackjack, their turn immediately ends and both hands are evaluated. 
-
-## Contributing
-
-Since this is a personal project intended to showcase my own skills and limitations, I will not be accepting any contributions at this time.
 
 ## License
 
