@@ -56,8 +56,8 @@ const DECK = [
 $("#deal, #stand, #hit, #split, #double-down").prop("disabled", true);
 
 //Place bet//
-var playerChips = 1000;
-var betAmount = 0;
+var playerChips = 1000,
+    betAmount = 0;
 $("#white-chip").click(function() {
   if (betAmount < playerChips + betAmount && playerChips - 1 >= 0) {
     betAmount += 1;
@@ -107,12 +107,16 @@ $("#bet").click(function() {
   }
 })
 
+var backOfCard = $("<img width=160px height=240px>").addClass("back-of-card");
+var dealerLabel = $("<p id='dealer-label'></p>").text("DEALER");
+var hiddenCard;
+
 //Deal cards//
-var dealerCards = [];
-var playerCards = [];
-var dealerBlackjack = 0;
-var playerBlackjack = 0;
-var removedCards = [];
+var dealerCards = [],
+    playerCards = [],
+    dealerBlackjack = 0,
+    playerBlackjack = 0,
+    removedCards = [];
 $("#deal").click(function() {
   $("#player-cards, #dealer-cards, #split-hand-cards").empty();
   dealerCards = [];
@@ -121,11 +125,12 @@ $("#deal").click(function() {
   playerBlackjack = 0;
   playerHandValue = 0;
   dealerSoftAces = 0;
-  savePlayerChips = 0;
   saveBetAmount = 0;
   evaluatedDealerHand = false;
-  $("#back-of-card").show();
+  backOfCard.show();
+  dealerLabel.show();
   $("#alerts").empty();
+  $("#table-decor").empty();
   //Shuffle cards if necessary//
   if (DECK.length < 26) {
     for (let i = 0; i < removedCards.length; i++) {
@@ -141,6 +146,12 @@ $("#deal").click(function() {
     let img = $("<img width=160px height=240px>");
     img.attr("src", drawCard.link).appendTo("#dealer-cards");
     DECK.splice(DECK.indexOf(drawCard), 1);
+    if (dealerCards[1]) {
+      hiddenCard = img;
+      hiddenCard.hide();
+      backOfCard.appendTo("#dealer-cards");
+      backOfCard.before(dealerLabel);
+    } 
   }
   for (let i = 0; i < 2; i++) {  
     let drawCard = DECK[Math.floor(Math.random() * DECK.length)];
@@ -208,11 +219,10 @@ $("#hit").click(function() {
 })
 
 //Split pairs//
-var handIsSplit = false;
-var firstHand = [];
-var secondHand = [];
-var savePlayerChips = 0;
-var saveBetAmount = 0;
+var handIsSplit = false,
+    firstHand = [],
+    secondHand = [],
+    saveBetAmount = 0;
 $("#split").click(function() {
   handIsSplit = true;
   playerChips -= betAmount;
@@ -279,10 +289,10 @@ $("#double-down").click(function() {
   }
 })
 
-//Evaluate hand//
-var playerHandValue = 0;
-var splitHandsEvaluated = 0;
-var saveSecondHandValue = 0;
+//Evaluate player's hand//
+var playerHandValue = 0,
+    splitHandsEvaluated = 0,
+    saveSecondHandValue = 0;
 var evaluateHand = function() {
   playerHandValue = 0;
   let numOfAces = 0;
@@ -351,11 +361,13 @@ var evaluateHand = function() {
 }
 
 //Evaluate dealer's hand//
-var saveFirstHandValue = 0;
-var dealerHandValue = 0;
-var evaluatedDealerHand = false;
+var saveFirstHandValue = 0,
+    dealerHandValue = 0,
+    evaluatedDealerHand = false;
 var dealerTurn = function() {
-  $("#back-of-card").hide();
+  backOfCard.hide();
+  hiddenCard.show();
+  dealerLabel.hide();
   if (evaluatedDealerHand == false) {
     dealerHandValue = 0;
     let dealerNumOfAces = 0;
